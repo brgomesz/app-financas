@@ -12,3 +12,40 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Transacao {
+  id String @id @default(uuid())
+  nome String
+  tipo TipoTransacao
+  amount Decimal @db.Decimal(10,2)
+  categoria CategoriaTransacao
+  metodo MetodoPagamento
+  criadoEm DateTime @default(now())
+  modificadoEm DateTime @updatedAt
+}
+
+enum TipoTransacao {
+  DEPOSITO
+  GASTO
+  INVESTIMENTO
+}
+enum CategoriaTransacao {
+  CASA
+  TRANSPORTE
+  COMIDA
+  ENTRETENIMENTO
+  UTILIDADES
+  SALARIO
+  SAUDE
+  EDUCACAO
+  OUTRO
+}
+
+enum MetodoPagamento {
+  CARTAO_CREDITO
+  CARTAO_DEBITO
+  TRANSFERENCIA_BANCARIA
+  DINHEIRO
+  PIX
+  OUTRO
+}
