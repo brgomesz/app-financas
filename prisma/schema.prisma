@@ -14,14 +14,15 @@ datasource db {
 }
 
 model Transacao {
-  id String @id @default(uuid())
-  nome String
-  tipo TipoTransacao
-  amount Decimal @db.Decimal(10,2)
-  categoria CategoriaTransacao
-  metodo MetodoPagamento
-  criadoEm DateTime @default(now())
-  modificadoEm DateTime @updatedAt
+  id           String             @id @default(uuid())
+  nome         String
+  tipo         TipoTransacao
+  amount       Decimal            @db.Decimal(10, 2)
+  categoria    CategoriaTransacao
+  metodo       MetodoPagamento
+  criadoEm     DateTime           @default(now())
+  date         DateTime
+  modificadoEm DateTime           @updatedAt
 }
 
 enum TipoTransacao {
@@ -29,6 +30,7 @@ enum TipoTransacao {
   GASTO
   INVESTIMENTO
 }
+
 enum CategoriaTransacao {
   CASA
   TRANSPORTE
